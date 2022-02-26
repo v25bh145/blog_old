@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="styleSheet"  href="/storage/css/index.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!--img src="storage/images/example.jpg"/-->
+        <head-future v-bind:title="title"></head-future>
+
+        <sidebar-future v-on:div_click="sidebarClick" v-if="isLong === false"></sidebar-future>
+
+        <sidebar-long-future v-if="isLong === true"></sidebar-long-future>
+
+        <div id="inner">
+            <iframe-future v-bind:filepath="filepath" v-if="isInner === true"></iframe-future>
+            <content-future 
+                v-bind:shows="shows" 
+                v-bind:page="indexPage" 
+                v-on:enter_in="enterIn" 
+                v-on:next_page="nextPage"
+                v-on:last_page="lastPage"
+                v-if="isInner === false"></content-future>
+        </div>
+        <footer-future></footer-future>
+    </div>
+
+
+
+    <script src="/storage/js/components/head-future.js"></script>
+    <script src="/storage/js/components/sidebar-future.js"></script>
+    <script src="/storage/js/components/sidebar-long-future.js"></script>
+    <script src="/storage/js/components/content-future.js"></script>
+    <script src="/storage/js/components/iframe-future.js"></script>
+    <script src="/storage/js/components/footer-future.js"></script>
+    <script src="/storage/js/main.js"></script>
+</body>
+</html>

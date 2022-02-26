@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>这是一个什么都丑的后台</title>
+</head>
+<body>
+    <div>
+        <p>创建文章</p>
+        <form action="http://127.0.0.1:8000/admin/articles/creation" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="article-file">
+            <label for="article">json:</label>
+            <textarea name="article" id="article"></textarea>
+            <input type="submit" value="上传">
+        </form>
+        <p>article json格式：</p>
+        <img src="https://s1.ax1x.com/2020/05/25/tpnKwn.png" />
+    </div>
+    <hr>
+    <div id="deleteArticle">
+        <p>删除文章</p>
+        <label for="delete-article-id">文章ID:</label>
+        <input type="number" name="id" id="delete-article-id" v-model="id">
+        <button v-on:click="deletion">删!</button>
+    </div>
+    <hr>
+    <div>
+        <p>创建长篇</p>
+        <form action="http://127.0.0.1:8000/admin/longs/creation" method="post" enctype="multipart/form-data">
+            <label for="long">json:</label>
+            <textarea name="long" id="long"></textarea>
+            <input type="submit" value="上传">
+        </form>
+        <p>long json格式：</p>
+        <img src="https://s1.ax1x.com/2020/05/25/tpnlF0.png" />
+    </div>
+    <hr>
+    <div id="deleteLong">
+        <p>删除长篇</p>
+        <label for="delete-long-id">文章ID:</label>
+        <input type="number" name="id" id="delete-long-id" v-model="id">
+        <button v-on:click="deletion">删!</button>
+    </div>
+    <hr>
+    <div>
+        <p>创建章节</p>
+        <form action="http://127.0.0.1:8000/admin/chapters/creation" method="post" enctype="multipart/form-data">
+            <label for="chapter">json:</label>
+            <textarea name="chapter" id="chapter"></textarea>
+            <input type="submit" value="上传">
+        </form>
+        <p>chapter json格式：</p>
+        <img src="https://s1.ax1x.com/2020/05/25/tpn1YV.png" />
+    </div>
+    <hr>
+    <div id="deleteChapter">
+        <p>删除长篇</p>
+        <label for="delete-chapter-id">文章ID:</label>
+        <input type="number" name="id" id="delete-chapter-id" v-model="id">
+        <button v-on:click="deletion">删!</button>
+    </div>
+    
+    <script>
+        var deleteArticle = new Vue({
+            el: "#deleteArticle",
+            data:{
+                id: 0
+            },
+            methods:{
+                deletion: function(){
+                    $.get("http://127.0.0.1:8000/admin/articles/deletion/" + this.id, function(data, status){
+                        alert("data: " + data + "status: " + status);
+                    })
+                }
+            }
+        })
+        var deleteLong = new Vue({
+            el: "#deleteLong",
+            data:{
+                id: 0
+            },
+            methods:{
+                deletion: function(){
+                    $.get("http://127.0.0.1:8000/admin/longs/deletion/" + this.id, function(data, status){
+                        alert("data: " + data + "status: " + status);
+                    })
+                }
+            }
+        })
+        var deleteChapter = new Vue({
+            el: "#deleteChapter",
+            data:{
+                id: 0
+            },
+            methods:{
+                deletion: function(){
+                    $.get("http://127.0.0.1:8000/admin/chapters/deletion/" + this.id, function(data, status){
+                        alert("data: " + data + "status: " + status);
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>
